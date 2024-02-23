@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
-function App() {
+export default function App() {
+  const [countries, setCountries] = useState([]);
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((data) => setCountries(data))
+      .catch((err) => console.log("Error fetching data: " + err));
+  });
+
+  const containerStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+  };
+  const cardStyle = {
+    width: "200px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    border: "1px solid black",
+    padding: "10px",
+    margin: "10px",
+  };
+  const cardImgStyle = {
+    objectfit: "contain",
+    width: "100px",
+    height: "100px",
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={containerStyle}>
+      {countries.map((country) => (
+        <div style={cardStyle}>
+          <img
+            src={country.flags.png}
+            alt={`Flag of ${country.name.common}`}
+            style={cardImgStyle}
+          />
+          <h2 style={{ textAlign: "center" }}>{country.name.common}</h2>
+        </div>
+      ))}
     </div>
   );
 }
-
-export default App;
