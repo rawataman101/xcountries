@@ -35,10 +35,10 @@ export default function App() {
         <div style={cardStyle}>
           <img
             src={country.flag}
-            alt={`Flag of ${country.name}`}
+            alt={`Flag of ${country.abbr}`}
             style={cardImgStyle}
           />
-          <h2 style={{ textAlign: "center" }}>{country.abbr}</h2>
+          <h2 style={{ textAlign: "center" }}>{country.name}</h2>
         </div>
       ))}
     </div>
