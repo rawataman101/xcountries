@@ -34,11 +34,11 @@ export default function App() {
       {countries.map((country) => (
         <div style={cardStyle}>
           <img
-            src={country.flags.png}
-            alt={`Flag of ${country.name.common}`}
+            src={country.flag}
+            alt={`Flag of ${country.name}`}
             style={cardImgStyle}
           />
-          <h2 style={{ textAlign: "center" }}>{country.name.common}</h2>
+          <h2 style={{ textAlign: "center" }}>{country.abbr}</h2>
         </div>
       ))}
     </div>
